@@ -100,6 +100,7 @@
         </form>
         <div class="links">
             <a href="{{ route('passwordReset') }}">パスワードをお忘れですか？</a><br>
+            <a href="{{ route('register') }}">管理者の登録はこちらから</a>
         </div>
     </div>
 </body>
