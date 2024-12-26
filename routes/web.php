@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\LoginController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -14,9 +16,6 @@ Route::get('/attendance', function () {
 Route::get('/change', function () {
     return view('change');
 })->name('change');
-Route::get('/staff', function () {
-    return view('staff');
-})->name('staff');
 Route::get('/staffDetail', function () {
     return view('staffDetail');
 })->name('staffDetail');
@@ -32,12 +31,24 @@ Route::get('/attendance2', function () {
 Route::get('/attendance3', function () {
     return view('attendance3');
 })->name('attendance3');
-Route::get('/login', function () {
-    return view('login');
-})->name('login');
 Route::get('/passwordReset', function () {
     return view('passwordReset');
 })->name('passwordReset');
 Route::get('/register', function () {
     return view('register');
 })->name('register');
+Route::get('/complete', function () {
+    return view('complete');
+})->name('complete');
+Route::post('/register', [EmployeeController::class, 'store'])->name('register.store');
+
+Route::get('/login', function () {
+    return view('login');
+})->name('login');
+
+Route::post('/login', [LoginController::class, 'login'])->name('login.post');
+Route::middleware(['auth:client'])->group(function () {
+    Route::get('/staff', function () {
+        return view('staff');
+    })->name('staff');
+});

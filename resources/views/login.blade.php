@@ -44,7 +44,7 @@
             font-size: 0.9em;
         }
 
-        input[type="text"], input[type="password"] {
+        input[type="email"], input[type="password"] {
             width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
@@ -87,10 +87,17 @@
 <body>
     <div class="login-container">
         <h1>ログイン</h1>
+        @if ($errors->has('login'))
+            <div style="color: red;">
+                {{ $errors->first('login') }}
+            </div>
+        @endif
+
         <form action="/login" method="POST">
+            @csrf
             <div class="form-group">
-                <label for="username">ユーザー名</label>
-                <input type="text" id="username" name="username" placeholder="ユーザー名" required>
+                <label for="email">メールアドレス:</label>
+                <input type="email" id="email" name="email" placeholder="例: yamada@example.com" required>
             </div>
             <div class="form-group">
                 <label for="password">パスワード</label>

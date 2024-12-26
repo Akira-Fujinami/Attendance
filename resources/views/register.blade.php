@@ -79,7 +79,8 @@
 <body>
     <div class="container">
         <h1>新規登録</h1>
-        <form action="/register-staff" method="POST">
+        <form action="{{ route('register.store') }}" method="POST">
+        @csrf
             <label for="name">名前:</label>
             <input type="text" id="name" name="name" placeholder="例: 山田 太郎" required>
 
@@ -88,6 +89,9 @@
 
             <label for="password">パスワード:</label>
             <input type="password" id="password" name="password" placeholder="パスワードを入力" required>
+
+            <label for="password_confirmation">パスワード確認</label>
+            <input type="password" id="password_confirmation" name="password_confirmation" required>
 
             <div class="btn-container">
                 <button type="submit" class="btn btn-primary">登録</button>
